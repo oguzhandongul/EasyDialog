@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rlParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:paddingBottom="80dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/white_bg"
+        android:paddingBottom="15dp"
+        android:paddingTop="40dp">
+
+        <ImageView
+            android:id="@+id/ivCheck"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/circle_red_bg"
+            android:padding="20dp"
+            android:src="@drawable/ic_error" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivCheck"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:paddingTop="15dp"
+            android:text="Yorumunuz Gönderildi!"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_xlarge" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMessage"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.1" />
+
+            <com.oguzhandongul.easydialog.customviews.CVDialogButton
+                android:id="@+id/cvNegative"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:visibility="gone"
+                app:ad_colorMain="@color/green"
+                app:ad_colorSecond="@color/green_dark"
+                app:ad_cornerRadius="5"
+                app:ad_text="Tamam" />
+
+            <com.oguzhandongul.easydialog.customviews.CVDialogButton
+                android:id="@+id/cvPositive"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:visibility="visible"
+                app:ad_colorMain="@color/red"
+                app:ad_colorSecond="@color/red_dark"
+                app:ad_cornerRadius="5"
+                app:ad_text="Tamam" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.1" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tvTitle"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Yorumunuz editörlerimiz tarafından en kısa süre içinde kontrol edilecektir."
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_medium" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

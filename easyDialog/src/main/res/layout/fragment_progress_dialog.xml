@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rlParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:paddingBottom="80dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/white_bg"
+        android:paddingBottom="25dp"
+        android:paddingTop="40dp">
+
+        <ImageView
+            android:id="@+id/ivCheck"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/circle_red_bg"
+            android:padding="20dp" />
+
+        <com.oguzhandongul.easydialog.customviews.loadingviews.AVLoadingIndicatorView
+            android:id="@+id/progress"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            app:indicatorName="BallSpinFadeLoaderIndicator"
+            style="@style/AVLoadingIndicatorView" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivCheck"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:paddingTop="15dp"
+            android:text="Yorumunuz Gönderildi!"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_xlarge" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

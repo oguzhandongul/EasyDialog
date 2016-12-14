@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rlParent"
+    android:layout_width="match_parent"
+    android:background="@android:color/transparent"
+    android:paddingBottom="80dp"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/white_bg"
+        android:layout_centerInParent="true"
+        android:paddingBottom="15dp"
+        android:paddingTop="40dp">
+
+        <ImageView
+            android:id="@+id/ivCheck"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/circle_green_bg"
+            android:padding="20dp"
+            android:src="@drawable/icon_checked" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivCheck"
+            android:gravity="center"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:maxLines="2"
+            android:paddingTop="15dp"
+            android:text="Yorumunuz Gönderildi!"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_xlarge" />
+
+        <com.oguzhandongul.easydialog.customviews.CVDialogButton
+            android:id="@+id/cvPositive"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_below="@+id/tvMessage"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="25dp"
+            app:ad_text="Tamam"
+            app:ad_cornerRadius="5"
+            app:ad_colorMain="@color/green"
+            app:ad_colorSecond="@color/green_dark"
+            />
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Yorumunuz editörlerimiz tarafından en kısa süre içinde kontrol edilecektir."
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_medium"
+            android:layout_below="@+id/tvTitle"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

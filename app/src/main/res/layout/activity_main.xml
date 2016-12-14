@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+
+    <Button
+        android:id="@+id/buttonS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="SUCCESS DIALOG"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/buttonE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonS"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="ERROR DIALOG"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/buttonC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonE"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="CUSTOM DIALOG"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/buttonP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonC"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="PROGRESS DIALOG"
+        android:textSize="16sp" />
+</RelativeLayout>
