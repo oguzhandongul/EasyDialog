@@ -2,9 +2,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rlParent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@android:color/transparent"
-    android:paddingBottom="0dp">
+    android:paddingBottom="20dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:clipToPadding="false"
             android:layout_alignParentTop="true"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/cvPositive"
+            android:layout_marginBottom="46dp"
             android:nestedScrollingEnabled="false" />
 
         <ImageView
@@ -43,10 +43,10 @@
             android:id="@+id/cvPositive"
             android:layout_width="match_parent"
             android:layout_height="46dp"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/rvShare"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="-46dp"
             app:ad_colorMain="@color/green"
             app:ad_colorSecond="@color/green_dark"
             app:ad_cornerRadius="5"

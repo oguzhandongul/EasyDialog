@@ -86,7 +86,7 @@ public class SelectionDialogFragment extends BaseDialogFragment implements Dialo
         ArrayList<SelectionModel> selectionItem = dialogDataModel.getSelectionItems();
 
         if (adapterSelectionItemList == null) {
-            adapterSelectionItemList = new AdapterSelectionItemList(selectionItemsList, getActivity(), null, onItemClickListener);
+            adapterSelectionItemList = new AdapterSelectionItemList(selectionItemsList, getActivity(), null, dialogDataModel.getDialogFont(), onItemClickListener);
             adapterSelectionItemList.setPaginationEnabled(false);
 
             layoutManager = new LinearLayoutManager(getActivity());
@@ -105,7 +105,6 @@ public class SelectionDialogFragment extends BaseDialogFragment implements Dialo
             if (dialogDataModel.isDialogFontSet()) {
                 cvPositive.getTextView().setTypeface(FontCacheHelper.getFontOrGenerateOne(dialogDataModel.getDialogFont(), getActivity()));
             }
-
 
 
             //Icon
@@ -171,7 +170,7 @@ public class SelectionDialogFragment extends BaseDialogFragment implements Dialo
                 });
             }
 
-            if(dialogDataModel.isSelectionCallbackSet()){
+            if (dialogDataModel.isSelectionCallbackSet()) {
                 setOnItemClickListener(new CVSelectionItem.OnItemClickListener() {
                     @Override
                     public void onSelectionClick(int id, BaseDialogFragment dialogFragment) {

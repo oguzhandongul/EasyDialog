@@ -21,11 +21,13 @@ public class AdapterSelectionItemList extends AdapterBase {
     private Context context;
     private ArrayList<Object> objects;
     private CVSelectionItem.OnItemClickListener onItemClickListener;
+    private String font;
 
-    public AdapterSelectionItemList(ArrayList<Object> objects, Context context, OnLoadListener onLoadListener, CVSelectionItem.OnItemClickListener onItemClickListener) {
+    public AdapterSelectionItemList(ArrayList<Object> objects, Context context, OnLoadListener onLoadListener,String font, CVSelectionItem.OnItemClickListener onItemClickListener) {
         super(objects, context, onLoadListener);
         this.objects = objects;
         this.context = context;
+        this.font = font;
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -40,7 +42,7 @@ public class AdapterSelectionItemList extends AdapterBase {
     @Override
     protected void onBindCustomViewHolder(RecyclerView.ViewHolder holder, int position) {
         super.onBindCustomViewHolder(holder, position);
-        ((ShareObjectHolder) holder).cvShare.setData((SelectionModel) objects.get(position), onItemClickListener);
+        ((ShareObjectHolder) holder).cvShare.setData((SelectionModel) objects.get(position),font, onItemClickListener);
     }
 
 
