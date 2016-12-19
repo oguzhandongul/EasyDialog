@@ -1,6 +1,7 @@
 package com.oguzhandongul.easydialog.dialogs;
 
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -131,7 +132,7 @@ public class CustomDialogFragment extends BaseDialogFragment implements DialogIn
                         .shape(DrawableCreator.Builder.SHAPE_OVAL)
                         .radius(40)
                         .strokeColor(0xFFFFFFFF)
-                        .backgroundColor(ContextCompat.getColor(getActivity(),dialogDataModel.getDialogIconBgColor()))
+                        .backgroundColor(ContextCompat.getColor(getActivity(), dialogDataModel.getDialogIconBgColor()))
                         .strokeWidth(2)
                         .createBackground(ivCheck);
 
@@ -166,8 +167,9 @@ public class CustomDialogFragment extends BaseDialogFragment implements DialogIn
                         }
                     });
                 }
-
-                cvPositive.setBackground(new DrawableCreator.Builder(getActivity()).createLayerList(ContextCompat.getColor(getActivity(), color), DrawableCreator.getDarkerColor(ContextCompat.getColor(getActivity(), color), 0.85f), cornerRadius));
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    cvPositive.setBackground(new DrawableCreator.Builder(getActivity()).createLayerList(ContextCompat.getColor(getActivity(), color), DrawableCreator.getDarkerColor(ContextCompat.getColor(getActivity(), color), 0.85f), cornerRadius));
+                }
             }
 
             //Negative Button
@@ -194,12 +196,15 @@ public class CustomDialogFragment extends BaseDialogFragment implements DialogIn
                         }
                     });
                 }
-
-                cvNegative.setBackground(new DrawableCreator.Builder(getActivity()).createLayerList(ContextCompat.getColor(getActivity(), color), DrawableCreator.getDarkerColor(ContextCompat.getColor(getActivity(), color), 0.85f), cornerRadius));
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    cvNegative.setBackground(new DrawableCreator.Builder(getActivity()).createLayerList(ContextCompat.getColor(getActivity(), color), DrawableCreator.getDarkerColor(ContextCompat.getColor(getActivity(), color), 0.85f), cornerRadius));
+                }else{
+                    cvNegative.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.rounded_red_bg));
+                }
             }
 
 
-            if(dialogDataModel.isDialogCancelTouchOutside()){
+            if (dialogDataModel.isDialogCancelTouchOutside()) {
                 rlParent.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

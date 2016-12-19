@@ -142,23 +142,33 @@ public class DrawableCreator {
         }
 
         public Drawable createLayerList(int color, int darkerColor, int corner) {
-            float radius = convertDpiToPixel(corner);
+            try {
+                float radius = convertDpiToPixel(corner);
 
-            float[] radiusArray = new float[]{radius, radius, radius, radius, radius, radius, radius, radius};
+                float[] radiusArray = new float[]{radius, radius, radius, radius, radius, radius, radius, radius};
 
-            ShapeDrawable top_shape_drawable = new ShapeDrawable(new RoundRectShape(radiusArray, null, null));
-            top_shape_drawable.getPaint().setColor(darkerColor);
+                ShapeDrawable top_shape_drawable = new ShapeDrawable(new RoundRectShape(radiusArray, null, null));
+                top_shape_drawable.getPaint().setColor(darkerColor);
 
-            ShapeDrawable bottom_shape_drawable = new ShapeDrawable(new RoundRectShape(radiusArray, null, null));
-            bottom_shape_drawable.getPaint().setColor(color);
+                ShapeDrawable bottom_shape_drawable = new ShapeDrawable(new RoundRectShape(radiusArray, null, null));
+                bottom_shape_drawable.getPaint().setColor(color);
 
-            Drawable[] drawarray = {top_shape_drawable, bottom_shape_drawable};
-            LayerDrawable layerdrawable = new LayerDrawable(drawarray);
+                Drawable[] drawarray = {top_shape_drawable, bottom_shape_drawable};
+                LayerDrawable layerdrawable = new LayerDrawable(drawarray);
 
-            layerdrawable.setLayerInset(0, 0, 0, 0, 0); //darker layer
-            layerdrawable.setLayerInset(1, 0, 0, 0, convertDpiToPixel(2)); //main top layer
+                layerdrawable.setLayerInset(0, 0, 0, 0, 0); //darker layer
+                layerdrawable.setLayerInset(1, 0, 0, 0, convertDpiToPixel(2)); //main top layer
 
-            return layerdrawable;
+                return layerdrawable;
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                GradientDrawable shape = null;
+                shape = new GradientDrawable();
+                shape.setColor(color);
+                shape.setCornerRadius(convertDpiToPixel(corner));
+                return shape;
+            }
         }
 
         public Drawable createBackground(@NonNull View view) {

@@ -1,6 +1,7 @@
 package com.oguzhandongul.easydialog.dialogs;
 
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -157,7 +158,11 @@ public class SelectionDialogFragment extends BaseDialogFragment implements Dialo
                     });
                 }
 
-                cvPositive.setBackground(new DrawableCreator.Builder(getActivity()).createLayerList(ContextCompat.getColor(getActivity(), color), DrawableCreator.getDarkerColor(ContextCompat.getColor(getActivity(), color), 0.85f), cornerRadius));
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    cvPositive.setBackground(new DrawableCreator.Builder(getActivity()).createLayerList(ContextCompat.getColor(getActivity(), color), DrawableCreator.getDarkerColor(ContextCompat.getColor(getActivity(), color), 0.85f), cornerRadius));
+                }else{
+                    cvPositive.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.rounded_green_bg));
+                }
             }
 
 

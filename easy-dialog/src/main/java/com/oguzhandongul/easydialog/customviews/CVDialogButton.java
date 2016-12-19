@@ -3,6 +3,7 @@ package com.oguzhandongul.easydialog.customviews;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.design.internal.ForegroundLinearLayout;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -62,7 +63,16 @@ public class CVDialogButton extends ForegroundLinearLayout {
         } finally {
             values.recycle();
         }
-        this.setBackground(new DrawableCreator.Builder(mContext).createLayerList(colorMain, colorSecond, cornerRadius));
+        try {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                this.setBackground(new DrawableCreator.Builder(mContext).createLayerList(colorMain, colorSecond, cornerRadius));
+                // only for gingerbread and newer versions
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
         this.setForeground(ContextCompat.getDrawable(mContext, R.drawable.flat_button_dark));
         this.setClickable(true);
         tvTitle.setText(titleString);
@@ -87,14 +97,14 @@ public class CVDialogButton extends ForegroundLinearLayout {
         this.colorSecond = colorSecond;
     }
 
-    public void updateBackground(int color, int darkerColor, int corner){
+    public void updateBackground(int color, int darkerColor, int corner) {
         setColorMain(color);
         setColorSecond(darkerColor);
         setCornerRadius(corner);
         this.setBackground(new DrawableCreator.Builder(mContext).createLayerList(colorMain, colorSecond, cornerRadius));
     }
 
-    public TextView getTextView(){
+    public TextView getTextView() {
         return tvTitle;
     }
 }
