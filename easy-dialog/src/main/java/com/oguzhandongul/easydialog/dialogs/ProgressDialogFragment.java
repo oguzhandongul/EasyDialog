@@ -15,7 +15,7 @@ import com.oguzhandongul.easydialog.DialogDataModel;
 import com.oguzhandongul.easydialog.FontCacheHelper;
 import com.oguzhandongul.easydialog.R;
 import com.oguzhandongul.easydialog.customviews.loadingviews.AVLoadingIndicatorView;
-import com.oguzhandongul.easydialog.utils.DrawableCreator;
+import com.oguzhandongul.easydialog.utils.DrawableCreators;
 
 /**
  * Created by oguzhandongul on 23/09/2016.
@@ -87,8 +87,8 @@ public class ProgressDialogFragment extends BaseDialogFragment implements Dialog
 
 
             if (dialogDataModel.isIconBgColorSet()) {
-                new DrawableCreator.Builder(getActivity())
-                        .shape(DrawableCreator.Builder.SHAPE_OVAL)
+                new DrawableCreators().getBuilder(getActivity())
+                        .shape(DrawableCreators.Builder.SHAPE_OVAL)
                         .radius(40)
                         .strokeColor(0xFFFFFFFF)
                         .backgroundColor(ContextCompat.getColor(getActivity(),dialogDataModel.getDialogIconBgColor()))

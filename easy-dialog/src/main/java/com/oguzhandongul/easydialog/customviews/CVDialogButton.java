@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.oguzhandongul.easydialog.R;
-import com.oguzhandongul.easydialog.utils.DrawableCreator;
+import com.oguzhandongul.easydialog.utils.DrawableCreators;
 
 
 public class CVDialogButton extends ForegroundLinearLayout {
@@ -65,7 +65,7 @@ public class CVDialogButton extends ForegroundLinearLayout {
         }
         try {
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                this.setBackground(new DrawableCreator.Builder(mContext).createLayerList(colorMain, colorSecond, cornerRadius));
+                this.setBackground(new DrawableCreators().getBuilder(mContext).createLayerList(colorMain, colorSecond, cornerRadius));
                 // only for gingerbread and newer versions
             }
 
@@ -101,7 +101,7 @@ public class CVDialogButton extends ForegroundLinearLayout {
         setColorMain(color);
         setColorSecond(darkerColor);
         setCornerRadius(corner);
-        this.setBackground(new DrawableCreator.Builder(mContext).createLayerList(colorMain, colorSecond, cornerRadius));
+        this.setBackground(new DrawableCreators().getBuilder(mContext).createLayerList(colorMain, colorSecond, cornerRadius));
     }
 
     public TextView getTextView() {

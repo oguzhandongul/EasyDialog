@@ -1,23 +1,16 @@
 package com.oguzhandongul.easydialog.utils;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.StateSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,10 +19,7 @@ import android.widget.ImageView;
  * Created by oguzhandongul on 14/10/2016.
  */
 
-public class DrawableCreator {
-
-    public DrawableCreator() {
-    }
+public class DrawableCreators {
 
 
     public static int getDarkerColor(int color, float factor) {
@@ -42,6 +32,10 @@ public class DrawableCreator {
                 Math.max((int) (r * factor), 0),
                 Math.max((int) (g * factor), 0),
                 Math.max((int) (b * factor), 0));
+    }
+
+    public Builder getBuilder( Context context){
+        return new Builder(context);
     }
 
     public static class Builder {
@@ -73,7 +67,7 @@ public class DrawableCreator {
         protected int gradientColors[];
 
 
-        public Builder(@NonNull Context context) {
+        public Builder( Context context) {
             this.context = context;
         }
 
@@ -92,21 +86,6 @@ public class DrawableCreator {
             return this;
         }
 
-        public Builder backgroundPressedColor(int backgroundPressedColor) {
-            this.backgroundPressedColor = backgroundPressedColor;
-            return this;
-        }
-
-        public Builder strokePressedColor(int sPressedColor) {
-            this.sPressedColor = sPressedColor;
-            return this;
-        }
-
-        public Builder strokePressedWidth(int sPressedWidth) {
-            this.sPressedWidth = sPressedWidth;
-            return this;
-        }
-
         public Builder radius(int radius) {
             this.radius = radius;
             return this;
@@ -122,24 +101,7 @@ public class DrawableCreator {
             return this;
         }
 
-        public Builder gradientType(int gradientType) {
-            this.gradientType = gradientType;
-            return this;
-        }
 
-        public Builder gradientOrientation(Orientation gradientOri) {
-            this.gradientOri = gradientOri;
-            return this;
-        }
-
-        public Builder gradientColors(int gradientColors[]) {
-            this.gradientColors = gradientColors;
-            return this;
-        }
-
-        public Drawable createBackground() {
-            return createShape(null);
-        }
 
         public Drawable createLayerList(int color, int darkerColor, int corner) {
             try {
@@ -238,90 +200,6 @@ public class DrawableCreator {
             }
             return shape;
 
-        }
-
-
-        private Drawable createNormalState() {
-            GradientDrawable shape = null;
-            shape = new GradientDrawable();
-            shape.setColor(backgroundColor);
-            shape.setCornerRadius(convertDpiToPixel(radius));
-            shape.setStroke(convertDpiToPixel(sWidth), sColor);
-
-            return shape;
-        }
-
-        private Drawable createPressedState() {
-            GradientDrawable shape = null;
-            shape = new GradientDrawable();
-            shape.setColor(backgroundPressedColor);
-            shape.setCornerRadius(convertDpiToPixel(radius));
-            shape.setStroke(convertDpiToPixel(sPressedWidth), sPressedColor);
-
-            return shape;
-        }
-
-        public void createSelector(View view) {
-
-
-            switch (selectorType) {
-                case SELECTOR_RECT:
-                    //Selector
-                    StateListDrawable stateListDrawable = new StateListDrawable();
-                    stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, createPressedState());
-                    stateListDrawable.addState(StateSet.WILD_CARD, createNormalState());
-                    view.setBackground(stateListDrawable);
-                    break;
-                case SELECTOR_RIPPLE:
-
-                    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        // only for API v21+
-                        view.setBackground(getPressedColorRippleDrawable(backgroundColor, backgroundPressedColor));
-                    } else {
-                        StateListDrawable stateListDrawable2 = new StateListDrawable();
-                        stateListDrawable2.addState(new int[]{android.R.attr.state_pressed}, createPressedState());
-                        stateListDrawable2.addState(StateSet.WILD_CARD, createNormalState());
-                        view.setBackground(stateListDrawable2);
-                    }
-
-                    break;
-                case SELECTOR_OVAL:
-                    radius = 500;
-                    StateListDrawable stateListDrawable3 = new StateListDrawable();
-                    stateListDrawable3.addState(new int[]{android.R.attr.state_pressed}, createPressedState());
-                    stateListDrawable3.addState(StateSet.WILD_CARD, createNormalState());
-                    view.setBackground(stateListDrawable3);
-                    break;
-            }
-        }
-
-
-        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-        public static RippleDrawable getPressedColorRippleDrawable(int normalColor, int pressedColor) {
-            return new RippleDrawable(getPressedColorSelector(0xAA666666, pressedColor), getColorDrawableFromColor(normalColor), null);
-        }
-
-        public static ColorStateList getPressedColorSelector(int normalColor, int pressedColor) {
-            return new ColorStateList(
-                    new int[][]
-                            {
-                                    new int[]{android.R.attr.state_pressed},
-                                    new int[]{android.R.attr.state_focused},
-                                    new int[]{android.R.attr.state_activated},
-                                    new int[]{}
-                            },
-                    new int[]
-                            {
-                                    pressedColor,
-                                    pressedColor,
-                                    pressedColor,
-                                    normalColor
-                            }
-            );
-        }
-
-        public static ColorDrawable getColorDrawableFromColor(int color) {
-            return new ColorDrawable(color);
         }
 
         int convertDpiToPixel(int dpi) {

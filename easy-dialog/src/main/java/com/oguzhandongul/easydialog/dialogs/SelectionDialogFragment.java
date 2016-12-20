@@ -1,7 +1,6 @@
 package com.oguzhandongul.easydialog.dialogs;
 
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -20,7 +19,7 @@ import com.oguzhandongul.easydialog.adapters.AdapterSelectionItemList;
 import com.oguzhandongul.easydialog.customviews.CVDialogButton;
 import com.oguzhandongul.easydialog.customviews.CVSelectionItem;
 import com.oguzhandongul.easydialog.models.SelectionModel;
-import com.oguzhandongul.easydialog.utils.DrawableCreator;
+import com.oguzhandongul.easydialog.utils.DrawableCreators;
 
 import java.util.ArrayList;
 
@@ -114,12 +113,12 @@ public class SelectionDialogFragment extends BaseDialogFragment implements Dialo
 
             }
             if (dialogDataModel.isIconColorSet()) {
-                DrawableCreator.overlayImageColor(ivCheck, ContextCompat.getColor(getActivity(), dialogDataModel.getDialogIconColor()));
+                DrawableCreators.overlayImageColor(ivCheck, ContextCompat.getColor(getActivity(), dialogDataModel.getDialogIconColor()));
 
             }
             if (dialogDataModel.isIconBgColorSet()) {
-                new DrawableCreator.Builder(getActivity())
-                        .shape(DrawableCreator.Builder.SHAPE_OVAL)
+                new DrawableCreators().getBuilder(getActivity())
+                        .shape(DrawableCreators.Builder.SHAPE_OVAL)
                         .radius(40)
                         .strokeColor(0xFFFFFFFF)
                         .backgroundColor(ContextCompat.getColor(getActivity(), dialogDataModel.getDialogIconBgColor()))
@@ -158,11 +157,7 @@ public class SelectionDialogFragment extends BaseDialogFragment implements Dialo
                     });
                 }
 
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    cvPositive.setBackground(new DrawableCreator.Builder(getActivity()).createLayerList(ContextCompat.getColor(getActivity(), color), DrawableCreator.getDarkerColor(ContextCompat.getColor(getActivity(), color), 0.85f), cornerRadius));
-                }else{
-                    cvPositive.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.rounded_green_bg));
-                }
+                cvPositive.setBackground(new DrawableCreators().getBuilder(getActivity()).createLayerList(ContextCompat.getColor(getActivity(), color), DrawableCreators.getDarkerColor(ContextCompat.getColor(getActivity(), color), 0.85f), cornerRadius));
             }
 
 
